@@ -66,7 +66,7 @@ class ModelService extends Service {
    }
    
    public function delete(): Model {
-      $this->repository->delete( $id );
+      // $this->repository->delete( $id );
       
       return $this->model;
    }
