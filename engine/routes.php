@@ -8,10 +8,6 @@
 
 use Newscast\Facades\RouteFacade as Route;
 use Newscast\Facades\ViewFacade as View;
-use Newscast\Models\User;
-use Newscast\Models\UserRole;
-use Newscast\Kernel\Container;
-use Newscast\Memory\Cookie;
 use Newscast\Services\RequestService as Request;
 
 Route::get( '/', function() {
@@ -30,7 +26,7 @@ Route::get( '/hello2', [ Newscast\App\Dummy::class, 'show' ] );
 
 Route::get('/my-protected-route', function(){
     echo "this is a protected route";
-})->middleware( "Restrict to logged in users with the editor role" );
+});
 
 Route::post( '/login', function() {
     if ( Request::auth() ) {
@@ -39,9 +35,3 @@ Route::post( '/login', function() {
 } );
 
 Route::post( '/login2', [ Newscast\App\Dummy::class, 'store' ] );
-
-// echo '<pre>';
-// var_dump( User::find(1)->user_roles()->role_name );
-// echo '</pre>';
-
-// Cookie::set( 'cookie-key', 'cookie-value' );
