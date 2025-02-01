@@ -16,12 +16,13 @@ class DbService extends Service {
       $orm::ext( 'get_table', function( $type ) use ( $orm ) { 
          return $orm::getRedBean()->dispense( $type ); 
       } );
+
+      $config = include(ENGINE_PATH . '/config.php');
       
-      // grab from config
-      $host = 'localhost';
-      $db = 'newscast';
-      $user = 'root';
-      $password = '';
+      $host = $config['db']['host'];
+      $db = $config['db']['db_name'];
+      $user = $config['db']['user'];
+      $password = $config['db']['password'];
       
       $orm::setup( 'mysql:host=' . $host . ';dbname=' . $db, $user, $password );
       
